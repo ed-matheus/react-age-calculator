@@ -4,4 +4,8 @@ body {
   box-sizing: border-box;
   font-family: 'Poppins', sans-serif;
   background-color: hsl(0, 0%, 94%);
+  height: 100vh;
+
+  display: flex;
+  align-items: center;
 }

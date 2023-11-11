@@ -26,9 +26,9 @@ const Card = () => {
                 </form>
 
                 <div className='output__container'>
-                    <span>--</span><p>years</p>
-                    <span>--</span><p>months</p>
-                    <span>--</span><p>days</p>
+                    <p><span>38</span> years</p>
+                    <p><span>3</span> months</p>
+                    <p><span>26</span> days</p>
                 </div>
             </div>
         </>

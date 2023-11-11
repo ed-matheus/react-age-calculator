@@ -1,7 +1,8 @@
 /* MAIN CONTAINER */
 .container__card {
     background-color: hsl(0, 0%, 100%);
-    border-radius: 20px;
+    border-radius: 20px 20px 85px;
+    width: 340px;
 }
 
 /* FORMS */
@@ -13,6 +14,8 @@ form {
 
 label {
     color: hsl(0, 1%, 44%);
+    font-size: 0.7rem;
+    letter-spacing: 0.2rem;
 }
 
 input {
@@ -24,11 +27,22 @@ input {
     font-size: 1.3rem;
 }
 
+input:focus {
+    outline: 0;
+    border: 1px solid hsl(259, 100%, 65%);
+}
+
+/* textarea:focus, input:focus, select:focus {
+    box-shadow: 0 0 0 0;
+    border: 0 none;
+    outline: 0;
+}  */
+
 button {
     position: absolute;
     right: 0;
     bottom: -28px;
-    margin-right: 118px;
+    margin-right: 116px;
 
     border: none;
     border-radius: 100%;
@@ -45,7 +59,21 @@ img {
     height: 26px;
 }
 
+/* RESULT OUTPUT */
 .output__container {
-    border: 1px solid red;
     margin-top: 50px;
+    font-size: 3rem;
+    line-height: 2.5rem;
+}
+
+p {
+    font-weight: 800;
+    font-style: italic;
+    color: hsl(0, 0%, 8%);
+}
+
+span {
+    font-weight: 800;
+    font-style: italic;
+    color: hsl(259, 100%, 65%);
 }
