@@ -67,8 +67,8 @@ img {
 /* RESULT OUTPUT */
 .output__container {
     margin-top: 60px;
-    font-size: 3.2rem;
-    line-height: 3rem;
+    font-size: 2.8rem;
+    line-height: 2.2rem;
 }
 
 p {
@@ -84,21 +84,6 @@ span {
 }
 
 /* MEDIA QUERIES FOR RESPONSIVITY */
-@media (min-width: 425px) {
-	.container__card {
-		width: 370px;
-	}
-
-    button {
-        margin-right: 121px;
-    }
-
-    .output__container {
-        font-size: 3.5rem;
-        line-height: 3rem;
-    }
-}
-
 @media (min-width: 768px) {
 	.container__card {
 		width: 440px;
@@ -119,6 +104,7 @@ span {
 
     .output__container {
         margin-top: 45px;
+        font-size: 3.1rem;
     }
 }
 

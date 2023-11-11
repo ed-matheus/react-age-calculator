@@ -1,6 +1,37 @@
 import './Card.css'
+// import { useState } from 'react'
 
 const Card = () => {
+    // Auto catching the date
+    const actualDate = new Date()
+    const currentDay = actualDate.getDate()
+    const currentMonth = actualDate.getMonth()+1
+    const currentYear = actualDate.getFullYear()
+
+    const ageCalc = () => {
+        const dayValue = document.querySelector('#day').value
+        const monthValue = document.querySelector('#month').value
+        const yearValue = document.querySelector('#year').value
+
+        // Catching the span elements
+        const years = document.querySelector('#years')
+        const months = document.querySelector('#months')
+        const days = document.querySelector('#days')
+
+        // console.log(`dia: ${dayValue}, mês: ${monthValue}, ano: ${yearValue}`)
+        // console.log(`Data: ${day}/${month}/${year}`)
+
+        // Calculating...
+        const age = currentYear - yearValue
+        const monthCalc = currentMonth - monthValue
+
+        // Showing the results
+        years.textContent = age
+        months.textContent = monthCalc
+    }
+
+    // let [data, setData] = useState('- -')
+
     return (
         <>
             <div className="container__card m-3">
@@ -20,15 +51,15 @@ const Card = () => {
                         <input type="text" id='year' />
                     </div>
 
-                    <button>
+                    <button type='button' onClick={ageCalc}>
                         <img src="/icon-arrow.svg" alt="arrow icon" />
                     </button>
                 </form>
 
                 <div className='output__container'>
-                    <p><span>38</span> years</p>
-                    <p><span>3</span> months</p>
-                    <p><span>26</span> days</p>
+                    <p><span id='years'>- -</span> years</p>
+                    <p><span id='months'>- -</span> months</p>
+                    <p><span id='days'>- -</span> days</p>
                 </div>
             </div>
         </>
