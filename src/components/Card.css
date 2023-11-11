@@ -3,6 +3,7 @@
     background-color: hsl(0, 0%, 100%);
     border-radius: 20px 20px 85px;
     width: 340px;
+    padding: 35px;
 }
 
 /* FORMS */
@@ -10,11 +11,15 @@ form {
     position: relative;
     padding-bottom: 60px;
     border-bottom: 2px solid hsl(0, 0%, 94%);
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
 label {
     color: hsl(0, 1%, 44%);
-    font-size: 0.7rem;
+    font-size: 0.6rem;
     letter-spacing: 0.2rem;
 }
 
@@ -22,7 +27,7 @@ input {
     width: 88px;
     height: 45px;
     padding-left: 12px;
-    border-radius: 8px;
+    border-radius: 6px;
     border: 1px solid hsl(0, 0%, 86%);
     font-size: 1.3rem;
 }
@@ -42,7 +47,7 @@ button {
     position: absolute;
     right: 0;
     bottom: -28px;
-    margin-right: 116px;
+    margin-right: 106px;
 
     border: none;
     border-radius: 100%;
@@ -61,9 +66,9 @@ img {
 
 /* RESULT OUTPUT */
 .output__container {
-    margin-top: 50px;
-    font-size: 3rem;
-    line-height: 2.5rem;
+    margin-top: 60px;
+    font-size: 3.2rem;
+    line-height: 3rem;
 }
 
 p {
@@ -76,4 +81,53 @@ span {
     font-weight: 800;
     font-style: italic;
     color: hsl(259, 100%, 65%);
+}
+
+/* MEDIA QUERIES FOR RESPONSIVITY */
+@media (min-width: 425px) {
+	.container__card {
+		width: 370px;
+	}
+
+    button {
+        margin-right: 121px;
+    }
+
+    .output__container {
+        font-size: 3.5rem;
+        line-height: 3rem;
+    }
+}
+
+@media (min-width: 768px) {
+	.container__card {
+		width: 440px;
+	}
+
+    form {
+        justify-content: start;
+        padding-bottom: 40px;
+    }
+
+    form div {
+        margin-right: 20px;
+    }
+
+    button {
+        margin-right: 0px;
+    }
+
+    .output__container {
+        margin-top: 45px;
+    }
+}
+
+@media (min-width: 1000px) {
+	.container__card {
+		width: 480px;
+	}
+
+    button {
+        margin-right: 0px;
+    }
 }

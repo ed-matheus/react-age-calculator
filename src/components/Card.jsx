@@ -3,8 +3,8 @@ import './Card.css'
 const Card = () => {
     return (
         <>
-            <div className="container__card p-4 m-3">
-                <form className='d-flex justify-content-between mb-4'>
+            <div className="container__card m-3">
+                <form className='mb-4'>
                     <div className='d-flex flex-column align-items-start'>
                         <label htmlFor="day">DAY</label>
                         <input type="text" id='day' />
