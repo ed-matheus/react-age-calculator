@@ -1,5 +1,13 @@
 import './Card.css'
-// import { useState } from 'react'
+
+/* 
+    - Months with less days -
+    February: 28 days
+    April: 30 days
+    June: 30
+    September: 30
+    November: 30
+*/
 
 const Card = () => {
     // Auto catching the current date
@@ -8,36 +16,67 @@ const Card = () => {
     const currentYear = currentDate.getFullYear()
 
     const ageCalc = () => {
-        const dayNasc = document.querySelector('#day').value
-        const monthNasc = document.querySelector('#month').value
-        const yearNasc = document.querySelector('#year').value
+        // Catching the elements
+        const labelElements = document.querySelectorAll('label')  
+        const dayNasc = document.querySelector('#day')
+        const monthNasc = document.querySelector('#month')
+        const yearNasc = document.querySelector('#year')
 
-        // Catching the span elements
         const years = document.querySelector('#years')
         const months = document.querySelector('#months')
         const days = document.querySelector('#days')
 
-        // Calculating age and months
-        let age = currentYear - yearNasc
-        let monthCalc = currentMonth - monthNasc
+        const warningElements = document.querySelectorAll('.warning')
 
-        // Calculating the days between the dates
-        const userBirthdayThisYear = new Date(currentYear, monthNasc - 1, dayNasc);
-        let daysCalc = Math.floor((currentDate - userBirthdayThisYear) / (1000 * 60 * 60 * 24));
+        // Checking if at least one of the fields is empty, or if the inserted date is valid
+        if(dayNasc.value === "" || monthNasc.value === "" || yearNasc.value === "") {
+            labelElements.forEach(e => {
+                e.className = "text-danger"
+            })
 
-        if(monthCalc < 0) {
-            age--
-            monthCalc = 0
+            dayNasc.className = "border-danger"
+            monthNasc.className = "border-danger"
+            yearNasc.className = "border-danger"
+
+            warningElements.forEach(e => {
+                e.classList.remove('hide')
+            })
+
+        } else {
+            labelElements.forEach(e => {
+                e.className = ""
+            })
+
+            dayNasc.className = ""
+            monthNasc.className = ""
+            yearNasc.className = ""
+
+            warningElements.forEach(e => {
+                e.classList.add('hide')
+            })
+
+            // Calculating age and months
+            let age = currentYear - yearNasc.value
+            let monthCalc = currentMonth - monthNasc.value
+
+            // Calculating the days between the dates
+            const userBirthdayThisYear = new Date(currentYear, monthNasc.value - 1, dayNasc.value);
+            let daysCalc = Math.floor((currentDate - userBirthdayThisYear) / (1000 * 60 * 60 * 24));
+
+            if(monthCalc < 0) {
+                age--
+                monthCalc = 0
+            }
+
+            if(daysCalc < 0) {
+                daysCalc = 0
+            }
+
+            // Showing the results
+            years.textContent = age
+            months.textContent = monthCalc
+            days.textContent = daysCalc
         }
-
-        if(daysCalc < 0) {
-            daysCalc = 0
-        }
-
-        // Showing the results
-        years.textContent = age
-        months.textContent = monthCalc
-        days.textContent = daysCalc
     }
 
     return (
@@ -46,17 +85,20 @@ const Card = () => {
                 <form className='mb-4'>
                     <div className='d-flex flex-column align-items-start'>
                         <label htmlFor="day">DAY</label>
-                        <input type="text" id='day' />
+                        <input type="text" id='day' placeholder='DD' />
+                        <p className='warning text-danger hide'>This field is required</p>
                     </div>
 
                     <div className='d-flex flex-column align-items-start'>
                         <label htmlFor="month">MONTH</label>
-                        <input type="text" id='month' />
+                        <input type="text" id='month' placeholder='MM' />
+                        <p className='warning text-danger hide'>This field is required</p>
                     </div>
 
                     <div className='d-flex flex-column align-items-start'>
                         <label htmlFor="year">YEAR</label>
-                        <input type="text" id='year' />
+                        <input type="text" id='year' placeholder='YYYY' />
+                        <p className='warning text-danger hide'>This field is required</p>
                     </div>
 
                     <button type='button' onClick={ageCalc}>
