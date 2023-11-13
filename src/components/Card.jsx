@@ -2,35 +2,43 @@ import './Card.css'
 // import { useState } from 'react'
 
 const Card = () => {
-    // Auto catching the date
-    const actualDate = new Date()
-    const currentDay = actualDate.getDate()
-    const currentMonth = actualDate.getMonth()+1
-    const currentYear = actualDate.getFullYear()
+    // Auto catching the current date
+    const currentDate = new Date()
+    const currentMonth = currentDate.getMonth()+1
+    const currentYear = currentDate.getFullYear()
 
     const ageCalc = () => {
-        const dayValue = document.querySelector('#day').value
-        const monthValue = document.querySelector('#month').value
-        const yearValue = document.querySelector('#year').value
+        const dayNasc = document.querySelector('#day').value
+        const monthNasc = document.querySelector('#month').value
+        const yearNasc = document.querySelector('#year').value
 
         // Catching the span elements
         const years = document.querySelector('#years')
         const months = document.querySelector('#months')
         const days = document.querySelector('#days')
 
-        // console.log(`dia: ${dayValue}, mês: ${monthValue}, ano: ${yearValue}`)
-        // console.log(`Data: ${day}/${month}/${year}`)
+        // Calculating age and months
+        let age = currentYear - yearNasc
+        let monthCalc = currentMonth - monthNasc
 
-        // Calculating...
-        const age = currentYear - yearValue
-        const monthCalc = currentMonth - monthValue
+        // Calculating the days between the dates
+        const userBirthdayThisYear = new Date(currentYear, monthNasc - 1, dayNasc);
+        let daysCalc = Math.floor((currentDate - userBirthdayThisYear) / (1000 * 60 * 60 * 24));
+
+        if(monthCalc < 0) {
+            age--
+            monthCalc = 0
+        }
+
+        if(daysCalc < 0) {
+            daysCalc = 0
+        }
 
         // Showing the results
         years.textContent = age
         months.textContent = monthCalc
+        days.textContent = daysCalc
     }
-
-    // let [data, setData] = useState('- -')
 
     return (
         <>
