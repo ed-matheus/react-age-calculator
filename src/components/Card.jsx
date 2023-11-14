@@ -12,12 +12,11 @@ import './Card.css'
 const Card = () => {
     // Auto catching the current date
     const currentDate = new Date()
-    const currentMonth = currentDate.getMonth()+1
+    const currentMonth = currentDate.getMonth() + 1
     const currentYear = currentDate.getFullYear()
 
-    const ageCalc = () => {
+    const handleAgeCalc = () => {
         // Catching the elements
-        const labelElements = document.querySelectorAll('label')  
         const dayNasc = document.querySelector('#day')
         const monthNasc = document.querySelector('#month')
         const yearNasc = document.querySelector('#year')
@@ -26,23 +25,48 @@ const Card = () => {
         const months = document.querySelector('#months')
         const days = document.querySelector('#days')
 
+        const labelElements = document.querySelectorAll('label')  
         const warningElements = document.querySelectorAll('.warning')
 
         // Checking if at least one of the fields is empty, or if the inserted date is valid
         if(dayNasc.value === "" || monthNasc.value === "" || yearNasc.value === "") {
-            labelElements.forEach(e => {
-                e.className = "text-danger"
+            // If It's empty...
+            labelElements.forEach(label => {
+                label.className = "text-danger"
             })
 
-            dayNasc.className = "border-danger"
-            monthNasc.className = "border-danger"
-            yearNasc.className = "border-danger"
+            const inputElements = document.querySelectorAll('input')
+            inputElements.forEach(e => {
+                if(e.value === "") {
+                    e.className = "border-danger"
+                }
+            })
 
             warningElements.forEach(e => {
                 e.classList.remove('hide')
             })
 
+        // If It's an invalid date...
+        } if(dayNasc.value > 31) {
+            warningElements.forEach(e => {
+                e.classList.remove('hide')
+            })
+
+            warningElements[0].textContent = "Must be a valid day"
+            dayNasc.className = "border-danger"
+
+            if(monthNasc.value > 12) {
+                warningElements[1].textContent = "Must be a valid month"
+                monthNasc.className = "border-danger"
+            }
+
+            if(yearNasc.value > currentYear) {
+                warningElements[2].textContent = "Must be in the past"
+                yearNasc.className = "border-danger"
+            }
+
         } else {
+            // This happens if all of fields are correctly filled
             labelElements.forEach(e => {
                 e.className = ""
             })
@@ -84,24 +108,24 @@ const Card = () => {
             <div className="container__card m-3">
                 <form className='mb-4'>
                     <div className='d-flex flex-column align-items-start'>
-                        <label htmlFor="day">DAY</label>
+                        <label className='mb-1' htmlFor="day">DAY</label>
                         <input type="text" id='day' placeholder='DD' />
                         <p className='warning text-danger hide'>This field is required</p>
                     </div>
 
                     <div className='d-flex flex-column align-items-start'>
-                        <label htmlFor="month">MONTH</label>
+                        <label className='mb-1' htmlFor="month">MONTH</label>
                         <input type="text" id='month' placeholder='MM' />
                         <p className='warning text-danger hide'>This field is required</p>
                     </div>
 
                     <div className='d-flex flex-column align-items-start'>
-                        <label htmlFor="year">YEAR</label>
+                        <label className='mb-1' htmlFor="year">YEAR</label>
                         <input type="text" id='year' placeholder='YYYY' />
                         <p className='warning text-danger hide'>This field is required</p>
                     </div>
 
-                    <button type='button' onClick={ageCalc}>
+                    <button type='button' onClick={handleAgeCalc}>
                         <img src="/icon-arrow.svg" alt="arrow icon" />
                     </button>
                 </form>
